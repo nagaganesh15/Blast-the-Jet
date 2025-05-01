@@ -1,84 +1,67 @@
 <html>
     <head>
-        <title>anew</title>
+        <title>qwert</title>
         <style>
             body{
-                padding-top: 100px;
+                background-image: url('sky.jpg');
+                /* background-size: 100% 100% ; */
+                /* background-color: blue; */
             }
-            .bu{
-                width: 150px;
-                height: 150px;
-            }
-            
+
         </style>
     </head>
     <body>
-        <center>
-            <input type="button" id="b1" class="bu" onclick="but('b1')" />
-            <input type="button" id="b2" class="bu" onclick="but('b2')"/>
-            <input type="button" id="b3" class="bu" onclick="but('b3')"/>
-            <br>
-            <input type="button" id="b4" class="bu" onclick="but('b4')"/>
-            <input type="button" id="b5" class="bu" onclick="but('b5')"/>
-            <input type="button" id="b6" class="bu" onclick="but('b6')"/>
-            <br>
-            <input type="button" id="b7" class="bu" onclick="but('b7')"/>
-            <input type="button" id="b8" class="bu" onclick="but('b8')"/>
-            <input type="button" id="b9" class="bu" onclick="but('b9')"/>
-            <br>
-            <input type="text" id="score"/>
-        </center>
-    </body>
-    <script>
-        // let a=["1."]
-        function loop()
-        {
-            setTimeout(()=>{
-                r=Math.floor(Math.random()*9);
-                str='b'+String(r)
-                document.getElementById(str).style.backgroundImage="url(1.png)";
-                document.getElementById(str).style.backgroundPosition="center";
-                document.getElementById(str).value=1;
-            },500);
-            setTimeout(()=>{
-                document.getElementById(str).style.backgroundImage="";
-                document.getElementById(str).value=0;
+        <!-- <marquee direction="right" scrollamount="20" id="top" loop="1">
+            <img src="bg.png" onclick="blast()"/>
+        </marquee> -->
+        <h1 id="h"></h1>
+        <div id="marqu">
 
-            },1500);
-            setTimeout(loop,1500);
-        }
-        loop();
-        function red()
-        {
-            setTimeout(()=>{
-            r=Math.floor(Math.random()*9);
-            str='b'+String(r)
-            document.getElementById(str).style.backgroundImage="url(2.png)";
-            document.getElementById(str).value=2;
-            },1111);
-            setTimeout(()=>{
-                document.getElementById(str).style.backgroundImage="";
-                document.getElementById(str).value=0;
+        </div>
+        <script>
+            let c=0;
+            function loop(){
+                t=Math.floor(Math.random()*85);
 
-            },2222);
-            setTimeout(red,2222);
-        }
-        setTimeout(()=>{
-            red();
-        },300)
-        
-        let s=0;
-        function but(x)
-        {
-            a=document.getElementById(x).value;
-            if(a==1){
-                s+=1;
-                document.getElementById('score').value=s;
-                document.getElementById(x).backgroundColor="";
-                document.getElementById(str).value=0;
+                // arr=['india jet.png','china jet.png','canada jet.png','pak jet.png','blue jet.png'];
+                arr=["url('india jet.png')","url('china jet.png')","url('canada jet.png')","url('pak jet.png')","url('blue jet.png')"];
+                ran=Math.floor(Math.random()*5);
+                const marqu=document.getElementById('marqu');
+                const im=document.createElement('button');
+                const mar=document.createElement('marquee');
+                mar.direction="right";
+                im.style.width='250px';
+                im.style.height="200px";
+                mar.loop="1";
+                im.style.backgroundImage=arr[ran];
+                im.style.backgroundColor="transparent";
+                im.style.border="0px";
+                im.style.backgroundSize='100% 100%';
+                // im.src = arr[ran];
+                // im.onclick=blast(im);
+                im.onclick = () => blast(im);
+
+                mar.scrollAmount="25";
+                mar.style.position="absolute";
+                mar.style.top=t+'%';
+                // im.id="imgid"+c;
+                // const d='imgid'+c;
+                // im.style.marginTop = t+'%';
+                // im.style.position="relative";
+                c+=1;
+                marqu.appendChild(mar);
+                mar.appendChild(im);
+                // document.getElementById(d).style.marginTop=t+'%';
             }
-        }
-        
-        
-    </script>
+            function blast(sed){
+                sed.style.backgroundImage="url('blast jet.gif')";
+                setTimeout(() => {
+                    sed.style.backgroundImage = "none"; 
+                }, 500);
+                // sed.src="three.png";
+            }
+            loop();
+            setInterval(loop,1500)
+        </script>
+    </body>
 </html>
